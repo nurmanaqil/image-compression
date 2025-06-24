@@ -1,5 +1,3 @@
-# pca_image_compressor.py (Final Version)
-
 from PIL import Image
 import numpy as np
 from sklearn.decomposition import PCA
@@ -28,7 +26,7 @@ def calculate_psnr(original_image, compressed_image):
     compressed_float = compressed_image.astype(float)
     mse_val = np.mean((original_float - compressed_float) ** 2)
     if mse_val == 0:
-        return 100  # Identical images
+        return 100
     max_pixel = 255.0
     return 20 * np.log10(max_pixel / np.sqrt(mse_val))
 
@@ -38,31 +36,25 @@ def apply_pca_compression(image_array, compression_value, compression_type):
     """
     if image_array is None:
         return None, 0, 0, 0, 0, 0, 0, "Error: Image array is None."
-
     height, width, channels = image_array.shape
     compressed_channels = []
     start_time = time.time()
-
     if compression_type == 'percentage':
         try:
             compression_percentage = float(compression_value)
             if not (0 <= compression_percentage <= 100):
-                return None, 0, 0, 0, 0, 0, 0, "Compression percentage must be between 0 and 100."
+                return None, 0, 0, 0, 0, 0, 0, "Percentage must be between 0-100."
             percentage_to_retain = 100.0 - compression_percentage
             n_components = max(1, int(np.ceil(min(height, width) * (percentage_to_retain / 100.0))))
         except ValueError:
             return None, 0, 0, 0, 0, 0, 0, "Invalid percentage value."
-    elif compression_type == 'fixed':
+    else:
         try:
             n_components = max(1, int(compression_value))
         except ValueError:
             return None, 0, 0, 0, 0, 0, 0, "Invalid fixed components value."
-    else:
-        return None, 0, 0, 0, 0, 0, 0, "Invalid compression type specified."
-
     n_components = min(n_components, min(height, width))
     explained_variances = []
-
     for i in range(channels):
         channel = image_array[:, :, i]
         mean_channel = np.mean(channel)
@@ -72,26 +64,21 @@ def apply_pca_compression(image_array, compression_value, compression_type):
         reconstructed = pca.inverse_transform(transformed) + mean_channel
         compressed_channels.append(reconstructed)
         explained_variances.append(np.sum(pca.explained_variance_ratio_))
-
     compressed_image = np.stack(compressed_channels, axis=-1)
     compressed_image = np.clip(compressed_image, 0, 255).astype(np.uint8)
-
     runtime = time.time() - start_time
     info_retained = np.mean(explained_variances) * 100
-
     original_float = image_array.astype(float) / 255.0
     compressed_float = compressed_image.astype(float) / 255.0
-
     ssim_val = ssim(original_float, compressed_float, data_range=1, channel_axis=-1)
     mse_val = mse(original_float, compressed_float)
     psnr_val = calculate_psnr(image_array, compressed_image)
     visual_degradation = (1 - ssim_val) * 100
-
     return compressed_image, runtime, info_retained, visual_degradation, ssim_val, mse_val, psnr_val, None
 
-def save_image(image_array, output_path):
+def save_image(image_array, output_path, compression_percentage=50):
     """
-    Save a NumPy array as an image with compression if applicable.
+    Save a NumPy array as an image with dynamic quality based on compression percentage.
     """
     try:
         img = Image.fromarray(image_array)
@@ -101,10 +88,15 @@ def save_image(image_array, output_path):
             img = img.convert('RGB')
         
         if file_ext in ['.jpg', '.jpeg']:
-            img.save(output_path, quality=40, optimize=True)
+            jpeg_quality = int(80 - (compression_percentage / 100.0) * 90)
+            
+            print(f"[INFO] PCA Compression: {compression_percentage}%, Dynamic JPEG Quality: {jpeg_quality}")
+            img.save(output_path, quality=jpeg_quality, optimize=True)
+
         elif file_ext == '.webp':
-            img.save(output_path, quality=40)
-        else:
+            webp_quality = int(95 - (compression_percentage / 100.0) * 75)
+            img.save(output_path, quality=webp_quality)
+        else: 
             img.save(output_path)
 
         if os.path.exists(output_path):
