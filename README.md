@@ -8,11 +8,11 @@ Proyek ini adalah sebuah aplikasi web sederhana yang dibangun untuk mendemonstra
 
 ## Fitur Aplikasi
 
-* [cite_start]**Unggah Gambar**: Pengguna dapat mengunggah gambar dengan format populer seperti PNG, JPG, JPEG, GIF, dan BMP. 
-* [cite_start]**Kompresi Dinamis**: Tingkat kompresi dapat diatur secara interaktif melalui *slider* (0%-100%), yang menentukan persentase informasi yang akan dibuang. 
-* [cite_start]**Perbandingan Visual**: Menampilkan gambar asli dan gambar hasil kompresi secara berdampingan untuk memudahkan perbandingan kualitas. 
-* [cite_start]**Analisis Hasil**: Memberikan informasi mengenai waktu eksekusi algoritma kompresi dan persentase kompresi yang diterapkan. 
-* [cite_start]**Unduh Hasil**: Pengguna dapat mengunduh gambar yang telah dikompresi. 
+* **Unggah Gambar**: Pengguna dapat mengunggah gambar dengan format populer seperti PNG, JPG, JPEG, GIF, dan BMP. 
+* **Kompresi Dinamis**: Tingkat kompresi dapat diatur secara interaktif melalui *slider* (0%-100%), yang menentukan persentase informasi yang akan dibuang. 
+* **Perbandingan Visual**: Menampilkan gambar asli dan gambar hasil kompresi secara berdampingan untuk memudahkan perbandingan kualitas. 
+* **Analisis Hasil**: Memberikan informasi mengenai waktu eksekusi algoritma kompresi dan persentase kompresi yang diterapkan. 
+* **Unduh Hasil**: Pengguna dapat mengunduh gambar yang telah dikompresi. 
 * **Reset**: Terdapat fungsionalitas untuk mereset aplikasi, membersihkan gambar yang diunggah dan hasil kompresi.
 
 ## Teknologi yang Digunakan
@@ -31,7 +31,7 @@ Proyek ini adalah sebuah aplikasi web sederhana yang dibangun untuk mendemonstra
 
 ## Struktur Proyek
 
-[cite_start]Proyek ini diorganisir dengan struktur direktori sebagai berikut, sesuai dengan pedoman tugas: 
+Proyek ini diorganisir dengan struktur direktori sebagai berikut, sesuai dengan pedoman tugas: 
 
 ```
 .
@@ -101,7 +101,7 @@ Proyek ini adalah sebuah aplikasi web sederhana yang dibangun untuk mendemonstra
 * Aerio Ade Putra (NIM: L0124128)
 * Nurman Aqil Wicaksono (NIM: L0124139)
 
----
-[cite_start]**Fakultas Teknologi Informasi dan Sains Data** 
-[cite_start]**Universitas Sebelas Maret** 
-[cite_start]**Surakarta, 2025**
+--
+**Fakultas Teknologi Informasi dan Sains Data** 
+**Universitas Sebelas Maret** 
+**Surakarta, 2025**
