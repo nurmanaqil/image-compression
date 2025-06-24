@@ -2,7 +2,7 @@
 
 ## Deskripsi Proyek
 
-Proyek ini adalah sebuah aplikasi web sederhana yang dibangun untuk mendemonstrasikan proses kompresi gambar menggunakan algoritma **Principal Component Analysis (PCA)**. Aplikasi ini dikembangkan sebagai bagian dari Ujian Akhir Semester (UAS) untuk mata kuliah Aljabar Linear Kelas A, Semester Genap 2024/2025 di Universitas Sebelas Maret.
+Proyek ini adalah sebuah aplikasi web sederhana yang dibangun untuk mendemonstrasikan proses kompresi gambar menggunakan algoritma **Principal Component Analysis (PCA)**. Aplikasi ini dikembangkan sebagai bagian dari mata kuliah Aljabar Linear Kelas A, Semester Genap 2024/2025 di Universitas Sebelas Maret.
 
 PCA adalah teknik reduksi dimensi yang menyederhanakan data dengan mentransformasikannya menjadi sekumpulan komponen utama yang tidak berkorelasi.  Dalam konteks gambar, PCA digunakan untuk mengurangi jumlah komponen utama yang merepresentasikan data piksel, sehingga menghasilkan kompresi *lossy* (berbasis kualitas visual) dengan tetap mempertahankan warna asli gambar.
 
