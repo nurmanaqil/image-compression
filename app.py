@@ -1,5 +1,3 @@
-# src/app.py (Final Version)
-
 from flask import Flask, render_template, request, send_file, url_for, session, redirect
 from werkzeug.utils import secure_filename
 import os
@@ -75,7 +73,9 @@ def index():
                     elif compressed_image_array is not None:
                         clean_compressed_filename = f"compressed_{original_filename}"
                         compressed_image_path = os.path.join(app.config['COMPRESSED_FOLDER'], clean_compressed_filename)
-                        if save_image(compressed_image_array, compressed_image_path):
+                        
+                        # Meneruskan nilai persentase kompresi ke fungsi save_image
+                        if save_image(compressed_image_array, compressed_image_path, compression_level_applied):
                             timestamp = int(time.time())
                             compressed_image_url = url_for('static', filename=f'compressed/{clean_compressed_filename}', t=timestamp)
                         else:
